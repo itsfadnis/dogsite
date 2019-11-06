@@ -1,0 +1,25 @@
+phraseapp:
+  access_token: c14964052f02b14867f28991efee7732f9005765b600d12c6c2521a0a6a612b5
+  project_id: 52433dd7dbac778246e3aa970a883d7a
+  push:
+    sources:
+    - file: ./static/locales/en/common.json
+      params:
+        file_format: simple_json
+        tags: common
+        locale_id: c6176c1a25affced2800994936acee78
+    - file: ./static/locales/<locale_name>/dogs.json
+      params:
+        file_format: simple_json
+        tags: dogs
+        locale_id: c6176c1a25affced2800994936acee78
+  pull:
+    targets:
+    - file: ./static/locales/<locale_name>/common.json
+      params:
+        file_format: simple_json
+        tag: common
+    - file: ./static/locales/<locale_name>/dogs.json
+      params:
+        file_format: simple_json
+        tag: dogs
