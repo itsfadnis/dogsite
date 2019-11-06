@@ -2,7 +2,7 @@
   "name": "dogsite",
   "version": "0.1.0",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "PORT=3000 node server.js",
     "build": "next build",
     "start": "next start -p $PORT"
   },
