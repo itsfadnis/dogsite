@@ -13,12 +13,17 @@ const app = next({ dev: !isProd })
 const handle = app.getRequestHandler();
 
 const Sentry = require('@sentry/node')
+const fs = require('fs')
 
 app.prepare().then(() => {
   const server = express()
 
   if (isProd) {
-    Sentry.init({ dsn: process.env.SENTRY_PUBLIC_DSN })
+    const buildId = fs.readFileSync('.next/BUILD_ID', 'utf8')
+    Sentry.init({
+      dsn: process.env.SENTRY_PUBLIC_DSN,
+      release: `dogsite:${buildId}`
+    })
     server.use(Sentry.Handlers.requestHandler())
   }
 

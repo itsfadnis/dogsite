@@ -15,6 +15,14 @@ module.exports = withSourceMaps({
       new Dotenv()
     )
 
+    if (!dev) {
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          'process.env.BUILD_ID': JSON.stringify(buildId)
+        })
+      )
+    }
+
     return config
   }
 })

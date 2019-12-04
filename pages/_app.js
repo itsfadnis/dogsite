@@ -6,7 +6,10 @@ import * as Sentry from '@sentry/browser';
 const isProd = process.env.NODE_ENV === 'production'
 
 if (isProd) {
-  Sentry.init({ dsn: process.env.SENTRY_PUBLIC_DSN })
+  Sentry.init({
+    dsn: process.env.SENTRY_PUBLIC_DSN,
+    release: `dogsite:${process.env.BUILD_ID}`
+  })
 }
 
 class MyApp extends App {
