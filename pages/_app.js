@@ -1,8 +1,28 @@
 import React from 'react'
 import App from 'next/app'
 import { appWithTranslation } from '../i18n'
+import * as Sentry from '@sentry/browser';
+
+const isProd = process.env.NODE_ENV === 'production'
+
+if (isProd) {
+  Sentry.init({ dsn: 'https://bcdde8809a6c4c5e83db6cd7d30d9033@sentry.io/1844177' })
+}
 
 class MyApp extends App {
+  componentDidCatch (error, errorInfo) {
+    if (isProd) {
+      Sentry.configureScope(scope => {
+        Object.keys(errorInfo).forEach(key => {
+          scope.setExtra(key, errorInfo[key])
+        })
+      })
+      Sentry.captureException(error)
+    }
+    // This is needed to render errors correctly in development/production
+    super.componentDidCatch(error, errorInfo)
+  }
+
   render() {
     const { Component, pageProps } = this.props
     return (
