@@ -7,7 +7,7 @@ import { withTranslation } from '../i18n'
 const Home = ({ breeds, t }) => (
   <div>
     <Head>
-      <title>{ t('common:dogs') }</title>
+      <title>{ t('dogs:dogs') }</title>
     </Head>
     <h1>{ t('dogs:dogs') }</h1>
     <ul>
