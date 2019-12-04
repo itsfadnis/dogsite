@@ -1,4 +1,7 @@
-const withSourceMaps = require('@zeit/next-source-maps')
+const Dotenv = require('dotenv-webpack')
+const withSourceMaps = require('@zeit/next-source-maps')({
+  devtool: 'hidden-source-map'
+})
 
 module.exports = withSourceMaps({
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -8,11 +11,10 @@ module.exports = withSourceMaps({
 
     // Example using webpack option
     // config.plugins.push(new webpack.IgnorePlugin(/\/__tests__\//))
+    config.plugins.push(
+      new Dotenv()
+    )
+
     return config
-  },
-  webpackDevMiddleware: config => {
-    // Perform customizations to webpack dev middleware config
-    // Important: return the modified config
-    return config
-  },
+  }
 })

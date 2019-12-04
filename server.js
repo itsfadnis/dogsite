@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const isProd = process.env.NODE_ENV === 'production'
 
 const express = require('express')
@@ -16,7 +18,7 @@ app.prepare().then(() => {
   const server = express()
 
   if (isProd) {
-    Sentry.init({ dsn: 'https://bcdde8809a6c4c5e83db6cd7d30d9033@sentry.io/1844177' })
+    Sentry.init({ dsn: process.env.SENTRY_PUBLIC_DSN })
     server.use(Sentry.Handlers.requestHandler())
   }
 
