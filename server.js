@@ -22,7 +22,7 @@ app.prepare().then(() => {
     const buildId = fs.readFileSync('.next/BUILD_ID', 'utf8')
     Sentry.init({
       dsn: process.env.SENTRY_PUBLIC_DSN,
-      release: `dogsite:${buildId}`
+      release: buildId
     })
     server.use(Sentry.Handlers.requestHandler())
   }
