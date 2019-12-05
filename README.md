@@ -5,5 +5,6 @@
 - [Next.js](https://nextjs.org/) app setup with a custom express server
 - Neat i18n setup with [next-i18next](https://github.com/isaachinman/next-i18next)
 - [Phrase (previously phrasapp)](https://phrase.com/) integration with English & French
+- Sentry monitoring (with sourcemaps in production) :sunglasses:
 
 More on the way hopefully..
