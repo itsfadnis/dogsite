@@ -1,35 +1,13 @@
 require('dotenv').config()
 
-const fetch = require('isomorphic-unfetch')
-const fs = require('fs')
-
+const org = process.env.SENTRY_ORG
+const project = process.env.SENTRY_PROJECT
 const token = process.env.SENTRY_AUTH_TOKEN
 const buildId = fs.readFileSync('.next/BUILD_ID', 'utf8')
 
-const HEAD = require('child_process')
-  .execSync('git rev-parse HEAD')
-  .toString()
-  .trim()
+const { execSync } = require('child_process')
+const cli = './node_modules/@sentry/cli/bin/sentry-cli'
 
-fetch(`https://sentry.io/api/0/organizations/itsfadnis/releases/`, {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`,
-    'content-type': 'application/json'
-  },
-  body: JSON.stringify({
-    version: buildId,
-    refs: [{
-      repository: 'itsfadnis/dogsite',
-      commit: HEAD
-    }],
-    url: 'https://github.com/itsfadnis/dogsite',
-    projects: ['dogsite']
-  })
-}).then((response) => {
-  if (response.ok) {
-    console.log(`Release success! :) ${buildId}`)
-  } else {
-    console.log(`Release fail :(`)
-  }
-})
+execSync(`${cli} releases --org ${org} --project ${project} new ${buildId}`)
+execSync(`${cli} releases --org ${org} --project ${project} files ${buildId} upload-sourcemaps .next`)
+execSync(`${cli} releases --org ${org} --project ${project} finalize ${buildId}`)
