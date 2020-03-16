@@ -36,7 +36,11 @@ module.exports = withSourceMaps({
         new SentryCliPlugin({
           release: buildId,
           include: '.next',
-          configFile: 'sentry.properties'
+          configFile: 'sentry.properties',
+          setCommits: {
+            repo: 'itsfadnis/dogsite',
+            auto: true
+          }
         })
       )
     }
