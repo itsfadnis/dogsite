@@ -5181,11 +5181,6 @@ send@0.17.1:
     range-parser "~1.2.1"
     statuses "~1.5.0"
 
-sentry-testkit@^3.0.2:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/sentry-testkit/-/sentry-testkit-3.0.2.tgz#cfed7537b574ee1c2e741d916ac1e37a0f8727f9"
-  integrity sha512-t0UgrVaGrhJi0v61nn7vma2VmmwGhRYFFaD+HBTnw+QZY5QLrYwdHTSwBgezx6BULmx0WgkEPklWM2BAbEcYVA==
-
 serialize-javascript@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/serialize-javascript/-/serialize-javascript-2.1.1.tgz#952907a04a3e3a75af7f73d92d15e233862048b2"
